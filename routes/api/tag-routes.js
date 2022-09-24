@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const { ne } = require('sequelize/types/lib/operators');
 const { Tag, Product, ProductTag } = require('../../models');
 
 // The `/api/tags` endpoint
@@ -65,7 +64,7 @@ router.put('/:id',async (req, res) => {
 router.delete('/:id',async (req, res) => {
   // delete on tag by its `id` value
   try {
-    const deleteTag = await Tag.destroy(req.body,{
+    const deleteTag = await Tag.destroy({
       where: {id:req.params.id}
     })
     res.json(deleteTag)

@@ -37,6 +37,7 @@ router.post('/', async (req, res) => {
     res.json(newCatergory)
   } catch (err) {
     res.status(500).json(err)
+    console.log(err)
   }
 });
 
@@ -45,22 +46,26 @@ router.put('/:id',async (req, res) => {
   try {
     const idCategory = await Category.update(req.body,
       {
-        where:{id:req.params.body}
+        where:{id:req.params.id}
       })
+    res.json(idCategory)
   } catch (err) {
     res.status(500).json(err)
+    console.log(err)
   }
 });
 
 router.delete('/:id',async (req, res) => {
   // delete a category by its `id` value
   try {
-    const idCategory = await Category.destroy(req.body,
+    const idCategory = await Category.destroy(
       {
-        where:{id:req.params.body}
+        where:{id:req.params.id}
       })
+    res.json(idCategory)
   } catch (err) {
     res.status(500).json(err)
+    console.log(err)
   }
 });
 
